@@ -1,0 +1,46 @@
+PID Explain:
+
+-PID a Controller are designed just like any other controller they take an input and then from the avaiable 
+information it will send an iutput signal to the actuators or in our case the motors to fulfill a specific task. 
+
+---------------------------------------------- Proporcional controller -------------------------------------------------
+
+*Imagen for a moment that we are programming for a self drive car and we wanto to have it stop at a stop sign*
+- We can do this by changing its speed as a function of the distance it has yet to travel at 50m away the car 
+perceives that. We can design our controller to change the speed of the car in km/h equal to the distance to the stop 
+sign or error in meters.
+
+At 50m away the car will set its speed to 50 km/h
+At 40m away the car will set its speed to 40 km/h
+At 30m away the car will set its speed to 30 km/h
+At 0m away the car will set its speed to 0 km/h
+
+This is called proporcional controller where we link the speed of the car to the error of our current position
+
+*The proporcional controller doesn't always work*
+- Imagine if the stop sign was replaced by another car traveling in the same direction moving at 20 km/h n our program
+aims to follow that car by staying in a safe following distance.
+
+When our car are 50m away we acellerate to 50 km/h, so far, so good. But there's a problem once we approach 20m from
+the target distance we are traveling at 20 km/h which os only just enough to stay with the in front but we have this 
+constant error of 20m and this is called a steady state error (erro de estado estacionário) and if we stay with the 
+proporcional controller, we will never by closer than the currenty distance, because both car are travelling at the 
+same speed, so the distance will be the same until one car change his velocity. 
+
+To fix this we add an integrator!
+----------------------------------------------- Integrator controller -------------------------------------------------
+
+The integrator pathway keeps a running total of the error of the car so as long as there is an error then the 
+integrator will take over the proporcional path of the controller (Because of this, we say that integrator is for 
+really small errors). A bigger error will make our velocity bigger, so our speed will be bigger than se distance + the
+speed of the target car.
+
+But now we have the third problem! Depending on how our car reached the target zone behind the leading car we may 
+overshoot the destination giving it a wobble effect a big wobble in our case can risk collinding with the car in front
+
+To solve this we add a third path to our controller the derivative!
+------------------------------------------------ Derivate controller --------------------------------------------------
+
+The derivative pathway eases the approach to the target which means that it smoothens the wobble of the proprotional n 
+integral paths and control engineers will tweak the weightings.
+-----------------------------------------------------------------------------------------------------------------------

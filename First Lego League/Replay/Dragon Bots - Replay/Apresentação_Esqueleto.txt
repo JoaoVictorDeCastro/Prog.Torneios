@@ -1,0 +1,4 @@
+Processo de montagem - Fotos dos robôs, o que aprendemos e pq deixamos de lado 
+Imaginando o robô atual - Pontos altos, inovações e pontos fracos 
+Projetando e testando o robô atual junto da programação
+Retirada do Ev3 
